@@ -1,0 +1,36 @@
+:root {
+  --inactive-color: black;
+  --active-color: blue;
+}
+
+.number {
+  display: flex;
+}
+
+.line {
+  width: 16px;
+  height: 104px;
+  margin-top: 3px;
+  border-radius: 3px;
+  background: var(--inactive-color);
+}
+
+.active.line {
+  background: var(--active-color);
+}
+
+.column.two .line {
+  width: 104px;
+  height: 16px;
+}
+
+.column {
+  display: flex;
+  margin-left: 3px;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.column.two {
+  width: 104px;
+}
