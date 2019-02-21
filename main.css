@@ -1,10 +1,15 @@
 :root {
-  --inactive-color: black;
-  --active-color: blue;
+  --inactive-color: rgb(29, 29, 29);
+  --active-color: white;
+}
+
+body {
+  background: black;
 }
 
 .number {
   display: flex;
+  justify-content: center;
 }
 
 .line {
