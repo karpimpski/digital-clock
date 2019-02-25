@@ -1,3 +1,5 @@
+require('../scss/main.scss')
+
 const numbers = document.getElementsByClassName('number')
 
 // instructions for filling each shape

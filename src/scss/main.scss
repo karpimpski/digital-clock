@@ -1,7 +1,5 @@
-:root {
-  --inactive-color: rgb(29, 29, 29);
-  --active-color: white;
-}
+$inactive-color: rgb(29, 29, 29);
+$active-color: white;
 
 body {
   display: flex;
@@ -28,12 +26,12 @@ body {
   height: 104px;
   margin-top: 3px;
   border-radius: 3px;
-  background: var(--inactive-color);
+  background: $inactive-color;
   transition: background 0.1s;
 }
 
 .active.line {
-  background: var(--active-color);
+  background: $active-color;
 }
 
 .column.two .line {
