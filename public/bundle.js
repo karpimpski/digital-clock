@@ -131,14 +131,27 @@ eval("\n/**\n * When source maps are enabled, `style-loader` uses a link element
 
 /***/ }),
 
+/***/ "./src/js/clock.js":
+/*!*************************!*\
+  !*** ./src/js/clock.js ***!
+  \*************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\nconst numberElements = document.getElementsByClassName('number'); // instructions for filling each shape\n\nconst shapes = [[[0, 0, 1], [1, 0, 2], [2, 0, 1]], [[2, 0, 1]], [[0, 1], [1, 0, 1, 2], [2, 0]], [[1, 0, 1, 2], [2, 0, 1]], [[0, 0], [1, 1], [2, 0, 1]], [[0, 0], [1, 0, 1, 2], [2, 1]], [[0, 0, 1], [1, 0, 1, 2], [2, 1]], [[1, 0], [2, 0, 1]], [[0, 0, 1], [1, 0, 1, 2], [2, 0, 1]], [[0, 0], [1, 0, 1, 2], [2, 0, 1]]];\n/* harmony default export */ __webpack_exports__[\"default\"] = (class {\n  /**\n   * \n   * @param {int} index  - index of \n   * @param {int} number -\n   */\n  draw(index, number) {\n    this.clear(numberElements[index]);\n    shapes[number].forEach(column => {\n      this.fill(numberElements[index], ...column);\n    });\n  }\n  /**\n   * Fills column based on which line indexes are chosen (0 is the top line).\n   */\n\n\n  fill(number, columnIndex, ...lineIndexes) {\n    const column = number.getElementsByClassName('column')[columnIndex];\n    lineIndexes.forEach(i => {\n      column.getElementsByClassName('line')[i].classList.add('active');\n    });\n  }\n  /**\n   * Removes all active lines from number.\n   */\n\n\n  clear(number) {\n    const lines = number.getElementsByClassName('line');\n\n    for (let i = 0; i < lines.length; i++) {\n      lines[i].classList.remove('active');\n    }\n  }\n\n});\n\n//# sourceURL=webpack:///./src/js/clock.js?");
+
+/***/ }),
+
 /***/ "./src/js/main.js":
 /*!************************!*\
   !*** ./src/js/main.js ***!
   \************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-eval("__webpack_require__(/*! ../scss/main.scss */ \"./src/scss/main.scss\");\n\nconst numberElements = document.getElementsByClassName('number'); // instructions for filling each shape\n\nconst shapes = [[[0, 0, 1], [1, 0, 2], [2, 0, 1]], [[2, 0, 1]], [[0, 1], [1, 0, 1, 2], [2, 0]], [[1, 0, 1, 2], [2, 0, 1]], [[0, 0], [1, 1], [2, 0, 1]], [[0, 0], [1, 0, 1, 2], [2, 1]], [[0, 0, 1], [1, 0, 1, 2], [2, 1]], [[1, 0], [2, 0, 1]], [[0, 0, 1], [1, 0, 1, 2], [2, 0, 1]], [[0, 0], [1, 0, 1, 2], [2, 0, 1]]];\nlet date = new Date();\nlet hour = date.getHours() % 12 ? date.getHours() % 12 : 12;\n\nif (hour > 9) {\n  draw(0, 1);\n  draw(0, hour % 12);\n} else {\n  draw(0, 0);\n  draw(1, hour);\n}\n\nlet minute = date.getMinutes();\n\nif (minute == 0) {\n  draw(2, 0);\n  draw(3, 0);\n} else if (minute < 10) {\n  draw(2, 0);\n  draw(3, minute);\n} else {\n  draw(2, Math.floor(minute / 10));\n  draw(3, minute % 10);\n}\n/**\n * Draws given number by filling each column individually.\n */\n\n\nfunction draw(index, number) {\n  clear(numberElements[index]);\n  shapes[number].forEach(function (column) {\n    fill(numberElements[index], ...column);\n  });\n}\n/**\n * Fills column based on which line indexes are chosen (0 is the top line).\n */\n\n\nfunction fill(number, columnIndex, ...lineIndexes) {\n  console.log(number);\n  const column = number.getElementsByClassName('column')[columnIndex];\n  lineIndexes.forEach(i => {\n    column.getElementsByClassName('line')[i].classList.add('active');\n  });\n}\n/**\n * Removes all active lines from number.\n */\n\n\nfunction clear(number) {\n  const lines = number.getElementsByClassName('line');\n\n  for (let i = 0; i < lines.length; i++) {\n    lines[i].classList.remove('active');\n  }\n}\n\n//# sourceURL=webpack:///./src/js/main.js?");
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _clock__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./clock */ \"./src/js/clock.js\");\n__webpack_require__(/*! ../scss/main.scss */ \"./src/scss/main.scss\");\n\n\nconst clock = new _clock__WEBPACK_IMPORTED_MODULE_0__[\"default\"]();\n\nfunction updateTime() {\n  let date = new Date();\n  let hour = date.getHours() % 12 ? date.getHours() % 12 : 12;\n\n  if (hour > 9) {\n    clock.draw(0, 1);\n    clock.draw(0, hour % 12);\n  } else {\n    clock.draw(0, 0);\n    clock.draw(1, hour);\n  }\n\n  drawSixty(date.getMinutes(), 2, 3);\n  drawSixty(date.getSeconds(), 4, 5);\n}\n\nfunction drawSixty(value, first, second) {\n  if (value == 0) {\n    clock.draw(first, 0);\n    clock.draw(second, 0);\n  } else if (value < 10) {\n    clock.draw(first, 0);\n    clock.draw(second, value);\n  } else {\n    clock.draw(first, Math.floor(value / 10));\n    clock.draw(second, value % 10);\n  }\n}\n\nsetInterval(updateTime, 500);\n\n//# sourceURL=webpack:///./src/js/main.js?");
 
 /***/ }),
 

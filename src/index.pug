@@ -1,25 +1,33 @@
-mixin number
-  .number
-    .column.one
-      .line
-      .line
-    .column.two
-      .line
-      .line
-      .line
-    .column.three
-      .line
-      .line
+head
+  title Digital Clock
+  meta(charset='UTF-8')
 
-mixin colon
-  .colon
-    .dot
-    .dot
+body
+  mixin number
+    .number
+      .column.one
+        .line
+        .line
+      .column.two
+        .line
+        .line
+        .line
+      .column.three
+        .line
+        .line
 
-+number
-+number
-+colon
-+number
-+number
+  mixin colon
+    .colon
+      .dot
+      .dot
 
-script(src='bundle.js')
+  +number
+  +number
+  +colon
+  +number
+  +number
+  +colon
+  +number
+  +number
+
+  script(src='bundle.js')
