@@ -1,26 +1,26 @@
+mixin number
+  .number
+    .column.one
+      .line
+      .line
+    .column.two
+      .line
+      .line
+      .line
+    .column.three
+      .line
+      .line
+
+mixin colon
+  .colon
+    .dot
+    .dot
+
 head
   title Digital Clock
   meta(charset='UTF-8')
 
 body
-  mixin number
-    .number
-      .column.one
-        .line
-        .line
-      .column.two
-        .line
-        .line
-        .line
-      .column.three
-        .line
-        .line
-
-  mixin colon
-    .colon
-      .dot
-      .dot
-
   +number
   +number
   +colon
